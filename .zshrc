@@ -5,43 +5,46 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-alias cat=bat
-alias vim=nvim
-alias v=nvim
-alias tmux='direnv exec / tmux'
-alias lg=lazygit
-alias md='mkdir -p'
+if command -v nvim &>/dev/null; then
+    alias vim=nvim
+    alias v=nvim
+    export EDITOR=nvim
+else
+    export EDITOR=vim
+fi
 
-# use exa for ls
-alias ls='exa'
-alias l='exa -l --git'
-alias la='exa -a'
-alias lla='exa -la --git'
-alias lt='exa --tree -l --git'
+if command -v exa &>/dev/null; then
+    # use exa for ls
+    alias ls='exa'
+    alias l='exa -l --git'
+    alias la='exa -a'
+    alias lla='exa -la --git'
+    alias lt='exa --tree -l --git'
+fi
 
-# aws-vault
-alias avl='aws-vault login'
-alias ave='aws-vault exec'
+if command -v bat &>/dev/null; then
+    alias cat=bat
+    export BAT_THEME="Nord"
+fi
 
-export BAT_THEME="Nord"
-export AWS_VAULT_KEYCHAIN_NAME=login
-export AWS_VAULT_PROMPT=ykman
-export FZF_ALT_C_COMMAND="fd -t d ."
-export FZF_ALT_C_OPTS="--preview 'exa --tree -l --git {} | head -200'"
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_COMMAND="fd . -t f"
-export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%'"
-export EDITOR=nvim
+if command -v aws-vault &>/dev/null; then
+    alias avl='aws-vault login'
+    alias ave='aws-vault exec'
+    export AWS_VAULT_KEYCHAIN_NAME=login
+    if command -v ykman &>/dev/null; then
+        export AWS_VAULT_PROMPT=ykman
+    fi
+fi
 
-source $HOME/.zsh_functions
-
-. /usr/local/opt/asdf/asdf.sh
-
-eval "$(direnv hook zsh)"
-
-export PATH="$HOME/.poetry/bin:$PATH"
-export PATH="$HOME/.emacs.d/bin:$PATH"
+if command -v fzf &>/dev/null; then
+    export FZF_ALT_C_COMMAND="fd -t d ."
+    export FZF_ALT_C_OPTS="--preview 'exa --tree -l --git {} | head -200'"
+    export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_DEFAULT_COMMAND="fd . -t f"
+    export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%'"
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fi
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -72,6 +75,15 @@ zinit ice pick"async.zsh" src"pure.zsh"
 zinit light sindresorhus/pure
 zinit snippet OMZ::plugins/git
 
+alias tmux='direnv exec / tmux'
+alias md='mkdir -p'
+source $HOME/.zsh_functions
+. $ASDF_DIR/asdf.sh
+export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
 bindkey -v
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-alias config='/usr/bin/git --git-dir=/Users/chris/.cfg/ --work-tree=/Users/chris'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+if command -v direnv &>/dev/null; then
+    eval "$(direnv hook zsh)"
+fi
