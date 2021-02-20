@@ -5,7 +5,7 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-if command -v nvim &>/dev/null; then
+if type nvim &>/dev/null; then
     alias vim=nvim
     alias v=nvim
     export EDITOR=nvim
@@ -13,7 +13,7 @@ else
     export EDITOR=vim
 fi
 
-if command -v exa &>/dev/null; then
+if type exa &>/dev/null; then
     # use exa for ls
     alias ls='exa'
     alias l='exa -l --git'
@@ -22,21 +22,21 @@ if command -v exa &>/dev/null; then
     alias lt='exa --tree -l --git'
 fi
 
-if command -v bat &>/dev/null; then
+if type bat &>/dev/null; then
     alias cat=bat
     export BAT_THEME="Nord"
 fi
 
-if command -v aws-vault &>/dev/null; then
+if type aws-vault &>/dev/null; then
     alias avl='aws-vault login'
     alias ave='aws-vault exec'
     export AWS_VAULT_KEYCHAIN_NAME=login
-    if command -v ykman &>/dev/null; then
+    if type ykman &>/dev/null; then
         export AWS_VAULT_PROMPT=ykman
     fi
 fi
 
-if command -v fzf &>/dev/null; then
+if type fzf &>/dev/null; then
     export FZF_ALT_C_COMMAND="fd -t d ."
     export FZF_ALT_C_OPTS="--preview 'exa --tree -l --git {} | head -200'"
     export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
@@ -83,6 +83,6 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 bindkey -v
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-if command -v direnv &>/dev/null; then
+if type direnv &>/dev/null; then
     eval "$(direnv hook zsh)"
 fi
