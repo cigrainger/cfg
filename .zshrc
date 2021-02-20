@@ -46,8 +46,10 @@ if type fzf &>/dev/null; then
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
 
-if [ -d "$HOME/.asdf" ]; then
+if [ -f "$HOME/.asdf/asdf.sh" ]; then
     . $HOME/.asdf/asdf.sh
+elif [ -f "/opt/homebrew/opt/asdf/asdf.sh" ]; then
+    . /opt/homebrew/opt/asdf/asdf.sh
 fi
 
 ### Added by Zinit's installer
@@ -90,3 +92,5 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 if type direnv &>/dev/null; then
     eval "$(direnv hook zsh)"
 fi
+
+. /opt/homebrew/opt/asdf/asdf.sh
