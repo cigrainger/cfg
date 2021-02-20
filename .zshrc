@@ -55,6 +55,10 @@ if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
         print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
 
+if command -v asdf &>/dev/null; then
+    . $ASDF_DIR/asdf.sh
+fi
+
 source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
@@ -78,7 +82,6 @@ zinit snippet OMZ::plugins/git
 alias tmux='direnv exec / tmux'
 alias md='mkdir -p'
 source $HOME/.zsh_functions
-. $ASDF_DIR/asdf.sh
 export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 bindkey -v
