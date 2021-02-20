@@ -92,5 +92,3 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 if type direnv &>/dev/null; then
     eval "$(direnv hook zsh)"
 fi
-
-. /opt/homebrew/opt/asdf/asdf.sh
