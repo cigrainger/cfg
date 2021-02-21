@@ -17,7 +17,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'kristijanhusak/vim-dadbod-ui'
-Plug 'neoclide/coc.nvim', { 'commit': 'release' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'othree/xml.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-abolish'
@@ -44,7 +44,7 @@ let g:coc_global_extensions = [
             \ 'coc-json',
             \ 'coc-marketplace',
             \ 'coc-prettier',
-            \ 'coc-python',
+            \ 'coc-pyright',
             \ 'coc-snippets',
             \ 'coc-svg',
             \ 'coc-tailwindcss',
@@ -324,3 +324,5 @@ if has('persistent_undo')
     " finally, enable undo persistence.
     set undofile
 endif
+
+set mouse=a
