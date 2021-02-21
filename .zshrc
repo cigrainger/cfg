@@ -1,3 +1,13 @@
+# Better history. See https://www.soberkoder.com/better-zsh-history/.
+export HISTFILE=~/.zsh_history
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+setopt SHARE_HISTORY
+export HISTTIMEFORMAT="[%F %T] "
+setopt EXTENDED_HISTORY
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 
@@ -43,8 +53,9 @@ if type fzf &>/dev/null; then
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_DEFAULT_COMMAND="fd . -t f"
     export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%'"
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if [ -f "$HOME/.asdf/asdf.sh" ]; then
     . $HOME/.asdf/asdf.sh
