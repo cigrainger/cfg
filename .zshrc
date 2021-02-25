@@ -92,6 +92,8 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 bindkey -v
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+[ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if type direnv &>/dev/null; then
