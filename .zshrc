@@ -1,9 +1,9 @@
 # Better history. See https://www.soberkoder.com/better-zsh-history/.
-export HISTFILE=~/.zsh_history
-export HISTFILESIZE=1000000000
-export HISTSIZE=1000000000
+HISTFILE=~/.zsh_history
+SAVEHIST=100000
+HISTSIZE=100000
+HISTTIMEFORMAT="[%F %T] "
 setopt SHARE_HISTORY
-export HISTTIMEFORMAT="[%F %T] "
 setopt EXTENDED_HISTORY
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
@@ -92,7 +92,7 @@ zinit ice pick"async.zsh" src"pure.zsh"
 zinit light sindresorhus/pure
 zinit snippet OMZ::plugins/git
 
-alias tmux='direnv exec / tmux'
+alias tmux='direnv exec / tmux -f ~/.config/tmux/tmux.conf'
 alias md='mkdir -p'
 source $HOME/.zsh_functions
 export PATH="$HOME/.poetry/bin:$PATH"
