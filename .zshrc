@@ -100,21 +100,6 @@ if type direnv &>/dev/null; then
     eval "$(direnv hook zsh)"
 fi
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/chris/.asdf/installs/python/miniconda3-latest/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/chris/.asdf/installs/python/miniconda3-latest/etc/profile.d/conda.sh" ]; then
-        . "/Users/chris/.asdf/installs/python/miniconda3-latest/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/chris/.asdf/installs/python/miniconda3-latest/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 if [ -f "$HOME/.asdf/asdf.sh" ]; then
     . $HOME/.asdf/asdf.sh
 elif [ -f "/opt/homebrew/opt/asdf/asdf.sh" ]; then
