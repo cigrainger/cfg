@@ -39,7 +39,9 @@ local indent = 2
 opt('b', 'expandtab', true)                           -- Use spaces instead of tabs
 opt('b', 'shiftwidth', indent)                        -- Size of an indent
 opt('b', 'smartindent', true)                         -- Insert indents automatically
+opt('b', 'undofile', true)                            -- Persist undo
 opt('b', 'tabstop', indent)                           -- Number of spaces tabs count for
+opt('o', 'incsearch', true)                           -- Turn on incremental search.
 opt('o', 'completeopt', 'menuone,noinsert,noselect')  -- Completion options (for deoplete)
 opt('o', 'hidden', true)                              -- Enable modified buffers in background
 opt('o', 'ignorecase', true)                          -- Ignore case
@@ -55,9 +57,12 @@ opt('o', 'wildmode', 'list:longest')                  -- Command-line completion
 opt('w', 'list', true)                                -- Show some invisible characters (tabs...)
 opt('w', 'number', true)                              -- Print line number
 
+g.rooter_change_directory_for_non_project_files = 'current' -- If there's no project root, change to file's dir.
+
 -- completion-nvim
 cmd 'autocmd BufEnter * lua require"completion".on_attach()'
 g.completion_enable_snippet = 'UltiSnips'
+g.UltiSnipsExpandTrigger = '<F13>' -- Rebind UltiSnips trigger because it overrides tab out of the box.
 
 -- lsp-status.nvim
 local lsp_status = require('lsp-status')
@@ -101,14 +106,33 @@ g.mapleader = ' '
 map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
 
-map('n', '<leader>l', '<cmd>noh<CR>')                 -- Clear highlights
-map('n', '<leader>o', 'm`o<Esc>``')                   -- Insert a newline in normal mode
+map('n', '<leader>l', '<cmd>noh<CR>') -- Clear highlights
+map('n', '<leader>o', 'm`o<Esc>``') -- Insert a newline in normal mode
 
 -- Telescope
+local telescope = require 'telescope'
+local actions = require 'telescope.actions'
+telescope.setup{
+  defaults = {
+    mappings = {
+      i = {
+        ['<esc>'] = actions.close
+      }
+    }
+  }
+}
+telescope.load_extension('ultisnips')
+telescope.load_extension('gh')
 map('n', '<leader>ff', ':Telescope find_files<CR>')
 map('n', '<leader>fg', ':Telescope live_grep<CR>')
 map('n', '<leader>fb', ':Telescope buffers<CR>')
 map('n', '<leader>fh', ':Telescope help_tags<CR>')
+map('n', '<leader>fs', ':Telescope ultisnips ultisnips<CR>')
+map('n', '<leader>fr', ':Telescope lsp_references<CR>')
+map('n', '<leader>fws', ':Telescope lsp_workspace_symbols<CR>')
+map('n', '<leader>fa', ':Telescope lsp_code_actions<CR>')
+map('n', '<leader>fwd', ':Telescope lsp_workspace_diagnostics<CR>')
+map('n', '<leader>fd', ':Telescope lsp_document_diagnostics<CR>')
 
 -- Kill the arrows.
 map('n', '<up>', '<nop>')
@@ -119,11 +143,6 @@ map('i', '<up>', '<nop>')
 map('i', '<down>', '<nop>')
 map('i', '<left>', '<nop>')
 map('i', '<right>', '<nop>')
-
--- nvim-tree.lua
-map('n', '<C-n>', ':NvimTreeToggle<CR>')
-map('n', '<leader>r', ':NvimTreeRefresh<CR>')
-map('n', '<leader>n', ':NvimTreeFindFile')
 
 -- Treesitter
 local ts = require 'nvim-treesitter.configs'

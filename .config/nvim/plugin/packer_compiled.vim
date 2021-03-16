@@ -57,10 +57,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/chris/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
-  ["nvim-tree.lua"] = {
-    loaded = true,
-    path = "/Users/chris/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
-  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/Users/chris/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
@@ -81,6 +77,14 @@ _G.packer_plugins = {
   ["popup.nvim"] = {
     loaded = true,
     path = "/Users/chris/.local/share/nvim/site/pack/packer/start/popup.nvim"
+  },
+  ["telescope-github.nvim"] = {
+    loaded = true,
+    path = "/Users/chris/.local/share/nvim/site/pack/packer/start/telescope-github.nvim"
+  },
+  ["telescope-ultisnips.nvim"] = {
+    loaded = true,
+    path = "/Users/chris/.local/share/nvim/site/pack/packer/start/telescope-ultisnips.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,

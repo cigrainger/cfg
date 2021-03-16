@@ -2,11 +2,13 @@ vim.cmd [[packadd packer.nvim]]
 local use = require('packer').use
 
 return require('packer').startup(function()
+  use {'SirVer/ultisnips'}
   use {'airblade/vim-rooter'}
   use {'arcticicestudio/nord-vim'}
   use {'christoomey/vim-tmux-navigator'}
   use {'editorconfig/editorconfig-vim'}
   use {'elixir-editors/vim-elixir'}
+  use {'fhill2/telescope-ultisnips.nvim'}
   use {'hashivim/vim-terraform'}
   use {'honza/vim-snippets'}
   use {'jpalardy/vim-slime'}
@@ -14,8 +16,9 @@ return require('packer').startup(function()
   use {'neovim/nvim-lspconfig'}
   use {'nvim-lua/completion-nvim'}
   use {'nvim-lua/lsp-status.nvim'}
+  use {'nvim-telescope/telescope-github.nvim'}
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-  use {'SirVer/ultisnips'}
+  use {'nvim-treesitter/nvim-treesitter-textobjects'}
   use {'tpope/vim-abolish'}
   use {'tpope/vim-commentary'}
   use {'tpope/vim-dadbod'}
@@ -33,11 +36,6 @@ return require('packer').startup(function()
   use {
     'nvim-telescope/telescope.nvim',
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-  }
-
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {'kyazdani42/nvim-web-devicons'}
   }
 
   use {
